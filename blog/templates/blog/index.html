@@ -1,0 +1,38 @@
+{% extends 'blog/basic.html' %}
+{% block title%} Blog {% endblock%}
+{% block body %}
+ <div class="container my-3">
+   <main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-12">
+      <h1 class="font-italic">My E-Commerce Website Blog Post</h1>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    {% for item in posts %}
+    <div class="col-md-6">
+      <div class="row border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h5 class="mb-0">{{item.title}}</h5>
+          <div class="mb-1 text-muted">{{item.pub_date}}</div>
+          <p class="card-text mb-auto">{{item.chead0|slice:"0:50"}}...</p>
+          <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="/media/{{item.image_nm}}" class="bd-placeholder-img" width="200"
+               height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+               focusable="false"></img>
+        </div>
+      </div>
+    </div>
+    {% if forloop.counter|divisibleby:2%}
+  </div>
+     <div class="row mb-2">
+       {% endif %}
+{% endfor %}
+     </div>
+</main><!-- /.container -->
+ </div>
+{% endblock %}
